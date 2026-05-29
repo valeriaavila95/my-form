@@ -95,6 +95,20 @@ def checkout():
 
     return redirect("/success")
 
+@app.route("/admin")
+def admin():
+    with sqlite3.connect(DB) as db:
+        db.row_factory = sqlite3.Row
+        rows = db.execute("SELECT * FROM orders ORDER BY created_at DESC").fetchall()
+        rows = [dict(row) for row in rows]
+    result = "<h1>Orders</h1><table border=1>"
+    if rows:
+        result += "<tr>" + "".join(f"<th>{k}</th>" for k in rows[0].keys()) + "</tr>"
+        for row in rows:
+            result += "<tr>" + "".join(f"<td>{v}</td>" for v in row.values()) + "</tr>"
+    result += "</table>"
+    return result
+
 @app.route("/success")
 def success():
     return render_template("success.html")
