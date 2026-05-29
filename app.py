@@ -113,6 +113,10 @@ def admin():
     result += "</table>"
     return result
 
+@app.route("/terms")
+def terms():
+    return render_template("terms.html")
+
 @app.route("/success")
 def success():
     return render_template("success.html")
