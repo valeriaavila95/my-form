@@ -2,14 +2,53 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Order placed</title>
+  <title>Order confirmed</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 </head>
 <body>
 <main class="container" style="max-width: 640px; padding-top: 2rem;">
-  <h1>Order placed!</h1>
-  <p>Your order has been received and saved.</p>
+
+  <h1>Order confirmed</h1>
+  <p>Thank you, {{ order.full_name }}. Your order has been received.</p>
+
+  <h2>Contact</h2>
+  <table>
+    <tr><th>Full name</th><td>{{ order.full_name }}</td></tr>
+    <tr><th>Email</th><td>{{ order.email }}</td></tr>
+    <tr><th>Phone</th><td>{{ order.phone or "Not provided" }}</td></tr>
+  </table>
+
+  <h2>Shipping</h2>
+  <table>
+    <tr><th>Address</th><td>{{ order.ship_line1 }}</td></tr>
+    <tr><th>City</th><td>{{ order.ship_city }}</td></tr>
+    <tr><th>ZIP</th><td>{{ order.ship_zip }}</td></tr>
+    <tr><th>Delivery date</th><td>{{ order.delivery_date }}</td></tr>
+  </table>
+
+  <h2>Payment</h2>
+  <table>
+    <tr><th>Card number</th><td>{{ order.card_number }}</td></tr>
+    <tr><th>Expiry</th><td>{{ order.card_expiry }}</td></tr>
+    <tr><th>CVV</th><td>{{ order.card_cvv }}</td></tr>
+  </table>
+
+  <h2>Billing</h2>
+  <table>
+    <tr><th>Address</th><td>{{ order.bill_line1 }}</td></tr>
+    <tr><th>City</th><td>{{ order.bill_city }}</td></tr>
+    <tr><th>ZIP</th><td>{{ order.bill_zip }}</td></tr>
+  </table>
+
+  <h2>Extras</h2>
+  <table>
+    <tr><th>Discount code</th><td>{{ order.discount_code or "None" }}</td></tr>
+    <tr><th>Marketing emails</th><td>{{ "Yes" if order.marketing else "No" }}</td></tr>
+  </table>
+
+  <br>
   <a href="/">Place another order</a>
+
 </main>
 </body>
 </html>
