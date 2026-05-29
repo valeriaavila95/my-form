@@ -93,7 +93,11 @@ def checkout():
             1 if f.get("marketing") else 0
         ))
 
-    return redirect("/success")
+    with sqlite3.connect(DB) as db:
+        db.row_factory = sqlite3.Row
+        order = db.execute("SELECT * FROM orders ORDER BY id DESC LIMIT 1").fetchone()
+        order = dict(order)
+    return render_template("success.html", order=order)
 
 @app.route("/admin")
 def admin():
