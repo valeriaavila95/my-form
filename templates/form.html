@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+</head>
+<body>
+<main class="container" style="max-width: 640px; padding-top: 2rem;">
+  <h1>Checkout</h1>
+  <form action="/checkout" method="POST">
+
+    <hgroup><h2>Contact</h2></hgroup>
+    <label>Full name *
+      <input type="text" name="full_name" required>
+    </label>
+    <label>Email *
+      <input type="email" name="email" required>
+    </label>
+    <label>Phone
+      <input type="tel" name="phone">
+    </label>
+
+    <hgroup><h2>Shipping</h2></hgroup>
+    <label>Street address *
+      <input type="text" name="ship_line1" required>
+    </label>
+    <label>City *
+      <input type="text" name="ship_city" required>
+    </label>
+    <label>ZIP / Postal code *
+      <input type="text" name="ship_zip" required>
+    </label>
+    <label>Preferred delivery date *
+      <input type="date" name="delivery_date" required>
+    </label>
+
+    <hgroup><h2>Payment</h2></hgroup>
+    <label>Card number *
+      <input type="text" name="card_number" maxlength="19" required placeholder="1234 5678 9012 3456">
+    </label>
+    <label>Expiration date *
+      <input type="text" name="card_expiry" maxlength="5" required placeholder="MM/YY">
+    </label>
+    <label>CVV *
+      <input type="text" name="card_cvv" maxlength="4" required placeholder="123">
+    </label>
+
+    <hgroup><h2>Billing address</h2></hgroup>
+    <label>Street address *
+      <input type="text" name="bill_line1" required>
+    </label>
+    <label>City *
+      <input type="text" name="bill_city" required>
+    </label>
+    <label>ZIP / Postal code *
+      <input type="text" name="bill_zip" required>
+    </label>
+
+    <hgroup><h2>Extras</h2></hgroup>
+    <label>Discount code
+      <input type="text" name="discount_code" placeholder="e.g. SAVE10">
+    </label>
+
+    <hgroup><h2>Agreements</h2></hgroup>
+    <label>
+      <input type="checkbox" name="terms" value="1" required>
+      I accept the Terms and Conditions *
+    </label>
+    <label>
+      <input type="checkbox" name="marketing" value="1">
+      Send me updates from this company (optional)
+    </label>
+
+    <button type="submit">Place order</button>
+
+  </form>
+</main>
+</body>
+</html>
