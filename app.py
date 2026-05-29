@@ -1,8 +1,9 @@
+import os
 from flask import Flask, request, redirect, render_template
 import sqlite3
 
 app = Flask(__name__)
-DB = "orders.db"
+DB = "/tmp/orders.db"
 
 def init_db():
     with sqlite3.connect(DB) as db:
@@ -28,6 +29,8 @@ def init_db():
                 created_at    DATETIME DEFAULT CURRENT_TIMESTAMP
             )
         """)
+
+init_db()
 
 @app.route("/")
 def index():
@@ -97,5 +100,4 @@ def success():
     return render_template("success.html")
 
 if __name__ == "__main__":
-    init_db()
-    import os; app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)
